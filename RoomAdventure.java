@@ -10,7 +10,7 @@ public class RoomAdventure { // Main class containing game logic
 
     // constants
     final private static String DEFAULT_STATUS =
-        "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include: 'go', 'look', 'take', and 'eat'."; // default error message
+        "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include: 'go', 'look', 'take', hide, drop, and 'eat'."; // default error message
 
     private static void handleGo(String noun) { // handles moving between rooms
         String[] exitDirections = currentRoom.getExitDirections(); // get available directions
@@ -22,7 +22,7 @@ public class RoomAdventure { // Main class containing game logic
                 status = "Changed Room"; // Update Status    
 
                 // Check if the new room is dangerous
-                if (currentRoom.getName().equals("Room 3")) {
+                if (currentRoom.toString().contains("Room 3")) {
                     dangerStatus = true;
                     status = "DANGER! A man is lurking around the room. Find a hiding spot.";
                 }
@@ -97,6 +97,19 @@ public class RoomAdventure { // Main class containing game logic
                     }                    
                 }
             } 
+        }
+    }
+
+    public static void handleDrop(String noun){ // handles dropping items
+        status = "I can't do that"; // default error message
+        for (String item : inventory) {
+            if (noun.equals(item)){
+                for (int k = 0; k < inventory.length; k++){
+                    if (item.equals(inventory[k])){
+                        inventory[k] = null; // set inventory space to null
+                    } 
+                } 
+            }
         }
     }
     private static void setupGame() { // Initializes game world
@@ -212,9 +225,11 @@ public class RoomAdventure { // Main class containing game logic
                     break;
                 case "eat":
                     handleEat(noun);
-
                 case "hide":
                     handleHide(noun);
+                    break;
+                case "drop":
+                    handleDrop(noun);
                     break;
                 default:
                     status = DEFAULT_STATUS;
