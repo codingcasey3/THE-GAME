@@ -80,11 +80,11 @@ public class RoomAdventure { // Main class containing game logic
             "It kinda stinks."
         };
         String[] room2Grabbables = {"Kettle", "Bread"};
-        room1.setExitDirections(room2ExitDirections);
-        room1.setExitDestinations(room2ExitDestinations);
-        room1.setItems(room2Items);
-        room1.setItemDescriptions(room2ItemDescriptions);
-        room1.setGrabbables(room2Grabbables);
+        room2.setExitDirections(room2ExitDirections);
+        room2.setExitDestinations(room2ExitDestinations);
+        room2.setItems(room2Items);
+        room2.setItemDescriptions(room2ItemDescriptions);
+        room2.setGrabbables(room2Grabbables);
 
         // Room 3
         String[] room3ExitDirections = {"east", "north"}; 
@@ -95,11 +95,11 @@ public class RoomAdventure { // Main class containing game logic
             "The screen is covered in dust."
         };
         String[] room3Grabbables = {"Remote", "Coffee"};
-        room1.setExitDirections(room3ExitDirections);
-        room1.setExitDestinations(room3ExitDestinations);
-        room1.setItems(room3Items);
-        room1.setItemDescriptions(room3ItemDescriptions);
-        room1.setGrabbables(room3Grabbables);
+        room3.setExitDirections(room3ExitDirections);
+        room3.setExitDestinations(room3ExitDestinations);
+        room3.setItems(room3Items);
+        room3.setItemDescriptions(room3ItemDescriptions);
+        room3.setGrabbables(room3Grabbables);
 
         // Room 4
         String[] room4ExitDirections = {"west", "north"}; 
@@ -110,11 +110,11 @@ public class RoomAdventure { // Main class containing game logic
             "It is full of dusty encyclopedias."
         };
         String[] room4Grabbables = {"Book"};
-        room1.setExitDirections(room4ExitDirections);
-        room1.setExitDestinations(room4ExitDestinations);
-        room1.setItems(room4Items);
-        room1.setItemDescriptions(room4ItemDescriptions);
-        room1.setGrabbables(room4Grabbables);
+        room4.setExitDirections(room4ExitDirections);
+        room4.setExitDestinations(room4ExitDestinations);
+        room4.setItems(room4Items);
+        room4.setItemDescriptions(room4ItemDescriptions);
+        room4.setGrabbables(room4Grabbables);
 
         currentRoom = room1; // Start game in room 1
     }
