@@ -4,8 +4,9 @@ public class RoomAdventure { // Main class containing game logic
 
     // class variables
     private static Room currentRoom; // the room the player is currently in
-    public static String[] inventory = {null, null, null, null, null}; //Player inventory slots
+    public static String[] inventory = {null, null, null}; //Player inventory slots
     public static String status; // Message to display after each action
+    private static boolean dangerStatus = false;
 
     // constants
     final private static String DEFAULT_STATUS =
@@ -19,10 +20,42 @@ public class RoomAdventure { // Main class containing game logic
             if (noun.equals(exitDirections[i])) { // If user direction matches
                 currentRoom = exitDestinations[i]; // Change current room
                 status = "Changed Room"; // Update Status    
+
+                // Check if the new room is dangerous
+                if (currentRoom.getName().equals("Room 3")) {
+                    dangerStatus = true;
+                    status = "DANGER! A man is lurking around the room. Find a hiding spot.";
+                }
             }    
         }
     }
 
+    private static void handleHide(String noun) {
+        if (!currentRoom.toString().contains("Room 3")) {
+            status = "There's no need to hide.";
+            return;
+        }
+
+        switch (noun) {
+            case "couch":
+                status = "You hide behind the couch. The man doesn't see and leaves.";
+                dangerStatus = false;
+                break;
+            case "table":
+                status = "You crawled under the table and hit your head, causing the mug to fall and the man to catch you.";
+                System.out.println(status);
+                System.exit(0);
+                break;
+            case "TV":
+                status = "You sneak toward the TV, but you tripped on a cable and the man caught you.";
+                System.out.println(status);
+                System.exit(0);
+                break;
+            default:
+                status = "I can't hide there.";
+        }        
+    }
+    
     public static void handleLook(String noun) { // handles inspecting items
         String[] items = currentRoom.getItems(); // visible items in current room
         String[] itemDescriptions = currentRoom.getItemDescriptions(); // Descriptions for each item
@@ -161,6 +194,12 @@ public class RoomAdventure { // Main class containing game logic
             String verb = words[0]; // make first word the verb
             String noun = words[1]; // make second word the noun
 
+            if (dangerStatus && !verb.equals("hide")) {
+                status = "I shouldn't do that right now. I need to 'hide'.";
+                System.out.println(status);
+                continue;
+            }
+
             switch (verb) { // decide which action to take
                 case "go":
                     handleGo(noun);
@@ -173,6 +212,9 @@ public class RoomAdventure { // Main class containing game logic
                     break;
                 case "eat":
                     handleEat(noun);
+
+                case "hide":
+                    handleHide(noun);
                     break;
                 default:
                     status = DEFAULT_STATUS;
