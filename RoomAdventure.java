@@ -9,7 +9,7 @@ public class RoomAdventure { // Main class containing game logic
 
     // constants
     final private static String DEFAULT_STATUS =
-        "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include: 'go', 'look', and 'take'."; // default error message
+        "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include: 'go', 'look', 'take', and 'eat'."; // default error message
 
     private static void handleGo(String noun) { // handles moving between rooms
         String[] exitDirections = currentRoom.getExitDirections(); // get available directions
@@ -50,6 +50,22 @@ public class RoomAdventure { // Main class containing game logic
         }
     }
 
+    public static void handleEat(String noun){ // Handles eating items
+        status = "I can't eat that..."; // default error message
+        for (String item : inventory){ // loop through inventory
+            if (noun.equals(item)){
+                if (item.equals("Bread") || item.equals("Coffee")){ // if item is a chosen food
+                    status = "mmmmmmm tasty"; // message if item eaten is a food item
+                    // removes eaten food from inventory
+                    for (int k = 0; k < inventory.length; k++){
+                        if (item.equals(inventory[k])){
+                            inventory[k] = null; // set inventory space to null
+                        } 
+                    }                    
+                }
+            } 
+        }
+    }
     private static void setupGame() { // Initializes game world
         Room room1 = new Room("Room 1"); // create room 1
         Room room2 = new Room("Room 2"); // create room 2
@@ -70,6 +86,7 @@ public class RoomAdventure { // Main class containing game logic
         room1.setItems(room1Items);
         room1.setItemDescriptions(room1ItemDescriptions);
         room1.setGrabbables(room1Grabbables);
+
 
         // Room 2
         String[] room2ExitDirections = {"west", "south"}; 
@@ -153,6 +170,9 @@ public class RoomAdventure { // Main class containing game logic
                     break;
                 case "take":
                     handleTake(noun);
+                    break;
+                case "eat":
+                    handleEat(noun);
                     break;
                 default:
                     status = DEFAULT_STATUS;
