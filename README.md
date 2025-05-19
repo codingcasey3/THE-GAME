@@ -1,8 +1,8 @@
 Features:
 
 Kate:
+  - added "eat" verb for items in inventory
   Wanting to add:
-  - "eat" verb (possibly with a hunger status)
   - "drop" verb
 
 Ellie:
