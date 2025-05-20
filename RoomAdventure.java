@@ -4,7 +4,7 @@ public class RoomAdventure { // Main class containing game logic
 
     // class variables
     private static Room currentRoom; // the room the player is currently in
-    public static String[] inventory = {null, null, null}; //Player inventory slots
+    public static String[] inventory = {null, null, null, null, null}; //Player inventory slots
     public static String status; // Message to display after each action
     private static boolean dangerStatus = false;
 
@@ -33,10 +33,7 @@ public class RoomAdventure { // Main class containing game logic
     private static void handleHide(String noun) {
         if (!currentRoom.toString().contains("Room 3")) {
             status = "There's no need to hide.";
-            return;
-        }
-
-        switch (noun) {
+        } else switch (noun) {
             case "couch":
                 status = "You hide behind the couch. The man doesn't see and leaves.";
                 dangerStatus = false;
@@ -52,8 +49,10 @@ public class RoomAdventure { // Main class containing game logic
                 System.exit(0);
                 break;
             default:
-                status = "I can't hide there.";
-        }        
+                status = "I can't hide there.";}
+
+
+              
     }
     
     public static void handleLook(String noun) { // handles inspecting items
@@ -117,7 +116,7 @@ public class RoomAdventure { // Main class containing game logic
         Room room2 = new Room("Room 2"); // create room 2
         Room room3 = new Room("Room 3"); // create room 3
         Room room4 = new Room("Room 4"); // create room 4  
-        Room room5 = new Room("Room 5"); // create room 5 aka Treasure room   
+        Room room5 = new Room("Room 5"); // create room 5 aka Victory room   
 
         // Room 1
         String[] room1ExitDirections = {"east", "south"}; 
@@ -127,7 +126,7 @@ public class RoomAdventure { // Main class containing game logic
             "It's worn and creaky",
             "It's covered in yellowed papers"
         };
-        String[] room1Grabbables = {"key"};
+        String[] room1Grabbables = {null};
         room1.setExitDirections(room1ExitDirections);
         room1.setExitDestinations(room1ExitDestinations);
         room1.setItems(room1Items);
@@ -138,12 +137,12 @@ public class RoomAdventure { // Main class containing game logic
         // Room 2
         String[] room2ExitDirections = {"west", "south"}; 
         Room[] room2ExitDestinations = {room1, room4};
-        String[] room2Items = {"stove", "refridgerator"};
+        String[] room2Items = {"stove", "refridgerator", "Knife", "Kettle", "Bread", "Nutella", "Apples", "Watermelon"};
         String[] room2ItemDescriptions = {
             "It's still hot.",
-            "It kinda stinks."
+            "It kinda stinks.", "You better be safe with it. "
         };
-        String[] room2Grabbables = {"Kettle", "Bread"};
+        String[] room2Grabbables = {"Kettle", "Bread", "Nutella", "Apples", "Watermelon", "Knife"};
         room2.setExitDirections(room2ExitDirections);
         room2.setExitDestinations(room2ExitDestinations);
         room2.setItems(room2Items);
@@ -153,12 +152,12 @@ public class RoomAdventure { // Main class containing game logic
         // Room 3
         String[] room3ExitDirections = {"east", "north"}; 
         Room[] room3ExitDestinations = {room4, room1};
-        String[] room3Items = {"couch", "TV"};
+        String[] room3Items = {"couch", "TV", "Paintings", "Carpet", "AC", "TVRemote", "Coffee", "ACRemote", "Slippers"};
         String[] room3ItemDescriptions = {
             "It's stained and stinky.",
             "The screen is covered in dust."
         };
-        String[] room3Grabbables = {"Remote", "Coffee"};
+        String[] room3Grabbables = {"TVRemote", "Coffee", "ACRemote", "Slippers"};
         room3.setExitDirections(room3ExitDirections);
         room3.setExitDestinations(room3ExitDestinations);
         room3.setItems(room3Items);
@@ -168,12 +167,14 @@ public class RoomAdventure { // Main class containing game logic
         // Room 4
         String[] room4ExitDirections = {"west", "north", "south"}; 
         Room[] room4ExitDestinations = {room3, room1, room5};
-        String[] room4Items = {"Bed", "Bookshelf"};
+        String[] room4Items = {"Bed", "Bookshelf", "PhotoAlbum" , "Book", "Frame", "Flowers", "lamp"};
         String[] room4ItemDescriptions = {
             "It is nicely made",
-            "It is full of dusty encyclopedias."
+            "It is full of dusty encyclopedias.", 
+            "Look at your childhood pictures.", 
+            "HAHA Finally got time to study for the finals."
         };
-        String[] room4Grabbables = {"Book"};
+        String[] room4Grabbables = {"Book", "Frame", "Flowers", "PhotoAlbum", "lamp"};
         room4.setExitDirections(room4ExitDirections);
         room4.setExitDestinations(room4ExitDestinations);
         room4.setItems(room4Items);
