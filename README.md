@@ -10,7 +10,7 @@ Aayush:
   - presentable display for win or lose situation if you have a certain item with you.
     
 Wanting to add:
-    - create a key for a door to the room that has the valuables and only go to that room if its in the inventory
+    - a key for a door to the room that has the valuables and only go to that room if its in the inventory
       
 Ellie:
   Wanting to add:
