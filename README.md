@@ -1,23 +1,29 @@
-Features:
+## 🔍 Project Features & Contributor Breakdown
 
-Kate:
-  - added "eat" verb for items in inventory
-  Wanting to add:
-  - "drop" verb
+### ✅ Implemented Features
 
-Aayush:
-  - added a mission to accomplish : if you find something precious oe valuable AND a trigger point or item for a dead-end in one of the rooms.
-  - presentable display for win or lose situation if you have a certain item with you.
-    
-Wanting to add:
-    - a key for a door to the room that has the valuables and only go to that room if its in the inventory
-      
-Ellie:
-  Wanting to add:
-  - Teleport button and then choose which room you want to avoid using all the exits
-  - enter nickname to be out into "Blank's username"
+**Kate**  
+- Introduced a functional `"eat"` verb, allowing players to consume items from their inventory for interaction or effect.
 
-Casey:
-  Wanting to add:
-  - "hide" section with objects to hide under, some being bad options
-  - inventory limit
+**Aayush**  
+- Added a **mission system**: Players now have an objective to find a valuable or precious item, introducing purpose and stakes to exploration.  
+- Included a **trigger mechanic** for dead-end rooms that are activated based on player actions or inventory.  
+- Created a **dynamic endgame display** showing a **win or lose** screen depending on whether the player holds a specific item at the end.
+
+---
+
+### 🧠 Features in Progress / Planned
+
+**Kate**  
+- Add a `"drop"` verb to allow players to remove items from their inventory and potentially use them strategically.
+
+**Aayush**  
+- Implement a **key-item mechanic**: Players must first find a key to unlock the door leading to the room containing the valuable item. Entry should only be possible if the key is in the inventory.
+
+**Ellie**  
+- Add a **teleport command** that allows players to jump to any room directly—bypassing standard navigation.  
+- Allow players to **enter a nickname**, which will personalize gameplay (e.g., "Blank's Inventory" or "Blank's Adventure").
+
+**Casey**  
+- Introduce a `"hide"` mechanic: Players can hide under or behind objects, with some options being traps or poor choices.  
+- Implement an **inventory limit** to encourage thoughtful item management and add challenge.
