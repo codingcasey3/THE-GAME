@@ -116,7 +116,8 @@ public class RoomAdventure { // Main class containing game logic
         Room room1 = new Room("Room 1"); // create room 1
         Room room2 = new Room("Room 2"); // create room 2
         Room room3 = new Room("Room 3"); // create room 3
-        Room room4 = new Room("Room 4"); // create room 4    
+        Room room4 = new Room("Room 4"); // create room 4  
+        Room room5 = new Room("Room 5"); // create room 5 aka Treasure room   
 
         // Room 1
         String[] room1ExitDirections = {"east", "south"}; 
@@ -165,8 +166,8 @@ public class RoomAdventure { // Main class containing game logic
         room3.setGrabbables(room3Grabbables);
 
         // Room 4
-        String[] room4ExitDirections = {"west", "north"}; 
-        Room[] room4ExitDestinations = {room3, room1};
+        String[] room4ExitDirections = {"west", "north", "south"}; 
+        Room[] room4ExitDestinations = {room3, room1, room5};
         String[] room4Items = {"Bed", "Bookshelf"};
         String[] room4ItemDescriptions = {
             "It is nicely made",
@@ -178,6 +179,21 @@ public class RoomAdventure { // Main class containing game logic
         room4.setItems(room4Items);
         room4.setItemDescriptions(room4ItemDescriptions);
         room4.setGrabbables(room4Grabbables);
+
+        //Room 5 
+        String[] room5ExitDirections = {"north"};
+        Room[] room5ExitDestinations = {room4};
+        String[] room5Items = {"granade", "gem", "chest", "old radio", "ancient scroll", "key chain", "empty cage", "note"};
+        String[] room5ItemDescriptions = { "this will explode!!!", "Wow! you found a gem. You can actually keep it with you and become rich haha!", "ohhhh chest!!! What could it be inside?", "Does this even play?", "looks really old. Can't even open it properly!", "does any of the room had locks? LOL", "just an empty cage", "you might want to check this note if you're willing to win the game"};
+
+        String[] room5Grabbables = {"grenade", "gem", "old radio", "key chain", "ancient scroll"};
+
+        room5.setExitDirections(room5ExitDirections);
+        room5.setExitDestinations(room5ExitDestinations);
+        room5.setItems(room5Items);
+        room5.setItemDescriptions(room5ItemDescriptions);
+        room5.setGrabbables(room5Grabbables);
+
 
         currentRoom = room1; // Start game in room 1
     }
