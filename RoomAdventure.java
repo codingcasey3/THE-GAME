@@ -184,7 +184,7 @@ public class RoomAdventure { // Main class containing game logic
         String[] room5ExitDirections = {"north"};
         Room[] room5ExitDestinations = {room4};
         String[] room5Items = {"granade", "gem", "chest", "old radio", "ancient scroll", "key chain", "empty cage", "note"};
-        String[] room5ItemDescriptions = { "this will explode!!!", "Wow! you found a gem. You can actually keep it with you and become rich haha!", "ohhhh chest!!! What could it be inside?", "Does this even play?", "looks really old. Can't even open it properly!", "does any of the room had locks? LOL", "just an empty cage", "you might want to check this note if you're willing to win the game"};
+        String[] room5ItemDescriptions = { "this will explode!!!", "Wow! you found a gem. You can actually keep it with you and become rich haha!", "ohhhh chest!!! What could it be inside?", "Does this even play?", "looks really old. Can't even open it properly!", "does any of the room had locks? LOL", "just an empty cage", "You need a precious item with you to finally win the game!"};
 
         String[] room5Grabbables = {"grenade", "gem", "old radio", "key chain", "ancient scroll"};
 
@@ -200,14 +200,18 @@ public class RoomAdventure { // Main class containing game logic
 
     public static void main(String[] args) {
         setupGame(); // initialize rooms, items, and starting room
-
-        while (true) { // Game loop, runs 
+        boolean running = true;
+        while (running) { // Game loop, runs 
             System.out.print(currentRoom.toString()); // display current room descriptions
             System.out.print("Inventory: ");
 
             for (int i = 0; i < inventory.length; i++){
                 System.out.print(inventory[i] + " ");
             }
+
+            // check if there is a grenade in the inventory and if yes game stops because the grenade explodes
+
+
 
             System.out.println("\nWhat would you like to do? "); // Prompt user
 
@@ -223,11 +227,16 @@ public class RoomAdventure { // Main class containing game logic
             String verb = words[0]; // make first word the verb
             String noun = words[1]; // make second word the noun
 
+
+
             if (dangerStatus && !verb.equals("hide")) {
                 status = "I shouldn't do that right now. I need to 'hide'.";
                 System.out.println(status);
                 continue;
-            }
+            }   
+
+
+
 
             switch (verb) { // decide which action to take
                 case "go":
@@ -237,6 +246,9 @@ public class RoomAdventure { // Main class containing game logic
                     handleLook(noun);
                     break;
                 case "take":
+                    handleTake(noun);
+                    break;
+                case "grab":
                     handleTake(noun);
                     break;
                 case "eat":
@@ -250,6 +262,69 @@ public class RoomAdventure { // Main class containing game logic
                 default:
                     status = DEFAULT_STATUS;
             }
+            //check for grenade in inventory and if found end the game 
+            for (String item : inventory){
+                if ("grenade".equals(item)){
+
+                    System.out.print("💥 You had a grenade in your backpack... and it exploded!");
+                    System.out.println(" ".repeat(17) + "u".repeat(7));
+                    System.out.println(" ".repeat(13) + "u".repeat(2) + "$".repeat(11) + "u".repeat(2));
+                    System.out.println(" ".repeat(10) + "u".repeat(2) + "$".repeat(17) + "u".repeat(2));
+                    System.out.println(" ".repeat(9) + "u" + "$".repeat(21) + "u");
+                    System.out.println(" ".repeat(8) + "u" + "$".repeat(23) + "u");
+                    System.out.println(" ".repeat(7) + "u" + "$".repeat(25) + "u");
+                    System.out.println(" ".repeat(7) + "u" + "$".repeat(25) + "u");
+                    System.out.println(" ".repeat(7) + "u" + "$".repeat(6) + "\"" + " ".repeat(3) + "\"" + "$".repeat(3) + "\"" + " ".repeat(3) + "\"" + "$".repeat(6) + "u");
+                    System.out.println(" ".repeat(7) + "\"" + "$".repeat(4) + "\"" + " ".repeat(6) + "u$u" + " ".repeat(7) + "$".repeat(4) + "\"");
+                    System.out.println(" ".repeat(8) + "$".repeat(3) + "u" + " ".repeat(7) + "u$u" + " ".repeat(7) + "u" + "$".repeat(3));
+                    System.out.println(" ".repeat(8) + "$".repeat(3) + "u" + " ".repeat(6) + "u" + "$".repeat(3) + "u" + " ".repeat(6) + "u" + "$".repeat(3));
+                    System.out.println(" ".repeat(9) + "\"" + "$".repeat(4) + "u".repeat(2) + "$".repeat(3) + " ".repeat(3) + "$".repeat(3) + "u".repeat(2) + "$".repeat(4) + "\"");
+                    System.out.println(" ".repeat(10) + "\"" + "$".repeat(7) + "\"" + " ".repeat(3) + "\"" + "$".repeat(7) + "\"");
+                    System.out.println(" ".repeat(12) + "u" + "$".repeat(7) + "u" + "$".repeat(7) + "u");
+                    System.out.println(" ".repeat(13) + "u$\"$\"$\"$\"$\"$\"$u");
+                    System.out.println(" ".repeat(2) + "u".repeat(3) + " ".repeat(8) + "$".repeat(2) + "u$ $ $ $ $u" + "$".repeat(2) + " ".repeat(7) + "u".repeat(3));
+                    System.out.println(" u" + "$".repeat(4) + " ".repeat(8) + "$".repeat(5) + "u$u$u" + "$".repeat(3) + " ".repeat(7) + "u" + "$".repeat(4));
+                    System.out.println(" ".repeat(2) + "$".repeat(5) + "u".repeat(2) + " ".repeat(6) + "\"" + "$".repeat(9) + "\"" + " ".repeat(5) + "u".repeat(2) + "$".repeat(6));
+                    System.out.println("u" + "$".repeat(11) + "u".repeat(2) + " ".repeat(4) + "\"".repeat(5) + " ".repeat(4) + "u".repeat(4) + "$".repeat(10));
+                    System.out.println("$".repeat(4) + "\"".repeat(3) + "$".repeat(10) + "u".repeat(3) + " ".repeat(3) + "u".repeat(2) + "$".repeat(9) + "\"".repeat(3) + "$".repeat(3) + "\"");
+                    System.out.println(" " + "\"".repeat(3) + " ".repeat(6) + "\"".repeat(2) + "$".repeat(11) + "u".repeat(2) + " " + "\"".repeat(2) + "$" + "\"".repeat(3));
+                    System.out.println(" ".repeat(11) + "u".repeat(4) + " \"\"" + "$".repeat(10) + "u".repeat(3));
+                    System.out.println(" ".repeat(2) + "u" + "$".repeat(3) + "u".repeat(3) + "$".repeat(9) + "u".repeat(2) + " \"\"" + "$".repeat(11) + "u".repeat(3) + "$".repeat(3));
+                    System.out.println(" ".repeat(2) + "$".repeat(10) + "\"".repeat(4) + " ".repeat(11) + "\"\"" + "$".repeat(11) + "\"");
+                    System.out.println(" ".repeat(3) + "\"" + "$".repeat(5) + "\"" + " ".repeat(22) + "\"\"" + "$".repeat(4) + "\"\"");
+                    System.out.println(" ".repeat(5) + "$".repeat(3) + "\"" + " ".repeat(25) + "$".repeat(4) + "\"");
+
+                    System.exit(0);
+                    
+
+                }
+                if ("gem".equals(item)){
+                    System.out.println("\n\n");
+                    System.out.println("              .-=========-.");
+                    System.out.println("              \\'-=======-'/");
+                    System.out.println("              _|   .=.   |_");
+                    System.out.println("             ((|  {{1}}  |))");
+                    System.out.println("              \\|   /|\\   |/");
+                    System.out.println("               \\__ '`' __/");
+                    System.out.println("                 _`) (`_");
+                    System.out.println("               _/_______\\_");
+                    System.out.println("              /___________\\");
+                    System.out.println();
+                    System.out.println("        🏆🏆🏆 CONGRATS, CHAMP! 🏆🏆🏆");
+                    System.out.println("     You completed the mission and won the game!");
+                    System.out.println();
+                    System.out.println("     💎 The GEM is yours. You are victorious!");
+                    System.out.println("     🎉 Celebration Mode: ON!");
+                    System.out.println();
+                    System.out.println("     Thanks for playing. Now go flex that win 😎");
+                    System.out.println();
+
+                    System.exit(0);
+                }
+
+            }
+
+            
 
             System.out.println(status); // print the status message
         }
