@@ -8,6 +8,7 @@ Kate:
 Aayush:
   - added a mission to accomplish : if you find something precious oe valuable AND a trigger point or item for a dead-end in one of the rooms.
   - presentable display for win or lose situation if you have a certain item with you.
+    
 Wanting to add:
     - create a key for a door to the room that has the valuables and only go to that room if its in the inventory
       
