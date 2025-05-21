@@ -7,6 +7,8 @@ public class RoomAdventure { // Main class containing game logic
     public static String[] inventory = {null, null, null, null, null}; //Player inventory slots
     public static String status; // Message to display after each action
     private static boolean dangerStatus = false;
+    private static String playerNickname = null; // Player's nickname
+    private static Room[] rooms;
 
     // constants
     final private static String DEFAULT_STATUS =
@@ -27,6 +29,13 @@ public class RoomAdventure { // Main class containing game logic
                     status = "DANGER! A man is lurking around the room. Find a hiding spot.";
                 }
             }    
+        }
+    }
+
+    private static void checkDanger() { // Check if the current room is dangerous
+        if (currentRoom.toString().contains("Room 3")) {
+            dangerStatus = true;
+            status = "DANGER! A man is lurking around the room. Find a hiding spot.";
         }
     }
 
@@ -53,6 +62,23 @@ public class RoomAdventure { // Main class containing game logic
 
 
               
+    }
+
+    private static void handleTeleport(String noun) {
+        status = "I don't know that room.";
+        for (Room r : rooms) {
+            if (r.getName().equalsIgnoreCase(noun)) {
+                currentRoom = r;
+                status = "Teleported to " + r.getName() + ".";
+                checkDanger();
+                return;
+            }
+        }
+    }
+
+     private static void handleNickname(String noun) {
+        playerNickname = noun;
+        status = "Nickname set to " + noun + ".";
     }
     
     public static void handleLook(String noun) { // handles inspecting items
@@ -112,11 +138,19 @@ public class RoomAdventure { // Main class containing game logic
         }
     }
     private static void setupGame() { // Initializes game world
-        Room room1 = new Room("Room 1"); // create room 1
-        Room room2 = new Room("Room 2"); // create room 2
-        Room room3 = new Room("Room 3"); // create room 3
-        Room room4 = new Room("Room 4"); // create room 4  
-        Room room5 = new Room("Room 5"); // create room 5 aka Victory room   
+
+       // ask for nickname:
+        System.out.print("Enter your nickname: ");
+        Scanner s = new Scanner(System.in);
+        playerNickname = s.nextLine().trim();
+        System.out.println("Nice to meet you, " + playerNickname + "!");
+
+    
+        Room room1 = new Room("Room1"); // create room 1
+        Room room2 = new Room("Room2"); // create room 2
+        Room room3 = new Room("Room3"); // create room 3
+        Room room4 = new Room("Room4"); // create room 4  
+        Room room5 = new Room("Room5"); // create room 5 aka Victory room   
 
         // Room 1
         String[] room1ExitDirections = {"east", "south"}; 
@@ -195,8 +229,9 @@ public class RoomAdventure { // Main class containing game logic
         room5.setItemDescriptions(room5ItemDescriptions);
         room5.setGrabbables(room5Grabbables);
 
-
+        rooms = new Room[]{ room1, room2, room3, room4, room5 };
         currentRoom = room1; // Start game in room 1
+
     }
 
     public static void main(String[] args) {
@@ -204,7 +239,7 @@ public class RoomAdventure { // Main class containing game logic
         boolean running = true;
         while (running) { // Game loop, runs 
             System.out.print(currentRoom.toString()); // display current room descriptions
-            System.out.print("Inventory: ");
+            System.out.print(playerNickname + "'s Inventory: "); // show inventory
 
             for (int i = 0; i < inventory.length; i++){
                 System.out.print(inventory[i] + " ");
@@ -254,11 +289,18 @@ public class RoomAdventure { // Main class containing game logic
                     break;
                 case "eat":
                     handleEat(noun);
+                    break;
                 case "hide":
                     handleHide(noun);
                     break;
                 case "drop":
                     handleDrop(noun);
+                    break;
+                case "teleport":  
+                    handleTeleport(noun);
+                    break;
+                case "nickname":
+                    handleNickname(noun);
                     break;
                 default:
                     status = DEFAULT_STATUS;
@@ -344,6 +386,10 @@ class Room {
 
     public Room(String name) { // constructor
         this.name = name; // Set the room's name
+    }
+
+     public String getName() {
+        return name;
     }
 
     public void setExitDirections(String[] exitDirections) { // setter for exits
