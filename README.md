@@ -4,6 +4,7 @@
 
 **Kate**  
 - Introduced a functional `"eat"` verb, allowing players to consume items from their inventory for interaction or effect.
+- Added a `"drop"` verb to allow players to remove items from their inventory and potentially use them strategically.
 
 **Aayush**  
 - Added a **mission system**: Players now have an objective to find a valuable or precious item, introducing purpose and stakes to exploration.  
@@ -13,9 +14,6 @@
 ---
 
 ### 🧠 Features in Progress / Planned
-
-**Kate**  
-- Add a `"drop"` verb to allow players to remove items from their inventory and potentially use them strategically.
 
 **Aayush**  
 - Implement a **key-item mechanic**: Players must first find a key to unlock the door leading to the room containing the valuable item. Entry should only be possible if the key is in the inventory.
