@@ -11,17 +11,12 @@
 - Included a **trigger mechanic** for dead-end rooms that are activated based on player actions or inventory.  
 - Created a **dynamic endgame display** showing a **win or lose** screen depending on whether the player holds a specific item at the end.
 
----
-
-### 🧠 Features in Progress / Planned
-
-**Aayush**  
-- Implement a **key-item mechanic**: Players must first find a key to unlock the door leading to the room containing the valuable item. Entry should only be possible if the key is in the inventory.
-
 **Ellie**  
-- Add a **teleport command** that allows players to jump to any room directly—bypassing standard navigation.  
-- Allow players to **enter a nickname**, which will personalize gameplay (e.g., "Blank's Inventory" or "Blank's Adventure").
+- Added a **teleport command** that allows players to jump to any room directly—bypassing standard navigation.  
+- Allowed players to **enter a nickname**, which will personalize gameplay (e.g., "Blank's Inventory" or "Blank's Adventure").
 
 **Casey**  
-- Introduce a `"hide"` mechanic: Players can hide under or behind objects, with some options being traps or poor choices.  
-- Implement an **inventory limit** to encourage thoughtful item management and add challenge.
+- Introduced a `"hide"` mechanic: Players can hide under or behind objects, with some options being traps or poor choices.  
+- Implemented an **inventory limit** to encourage thoughtful item management and add challenge.
+
+
